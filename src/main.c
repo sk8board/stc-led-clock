@@ -117,7 +117,7 @@ void checkAlarm()
         alarmDelay(66);         // 200ms
         BZR_OFF;
 #if HAS_NY3P_SPEECH
-        speakItem(sndRing);
+        speakItem(sndJingle);
         if (checkAndClearS3()){
 #else
         alarmDelay(225);        // 675ms
