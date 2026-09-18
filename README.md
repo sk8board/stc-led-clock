@@ -73,9 +73,39 @@ Once you're connected, you have your choice of either STC-ISP, which is a Window
 
 The last step above can be as easy as removing the connector to P3 and restoring. Or, if you're going to do additional development, a NC momentary push button in the +5 line and a diode and resistor in the RX/TX lines to prevent the serial adaptor signals from keeping the processor alive are required. The schematic for these connections is detailed in the STC technical document. Links below.
 
-### Making changes
+### Making changes with STCGAL in Linux
 It is a simple matter to rebuild with the provided Makefile for SDCC. The Makefile originated with zerog2k's STC DIY-Clock project and I extended it with the additional file structure I created. In doing so, I found that there were several file inter dependencies that required a fair number of "make clean" followed by "make" commands so I added the ".phony" rule to just recompile everything per session since the compile and link times were insignificant. Better to wait three seconds for a complete rebuild than to waste twenty minutes on trying to figure out why the changes didn't appear in the code.
 
+```bash
+#install required linux software
+apt install git sdcc gawk python3-venv
+
+# setup python environment
+python3 -m venv stcgal
+cd stcgal
+source bin/activate
+
+# install stcgal
+pip install stcgal
+
+# clone repo to the stc-led-clock directory
+git clone https://github.com/sk8board/stc-led-clock
+
+# change to the stc-led-clock directory
+cd stc-led-clock
+
+# run the make command after completing changes to the global.h file
+make
+
+# after the main.hex file is made, flash the hex file with the stcgal command
+stcgal -p /dev/ttyUSB0 -P stc15 -t 22184 -b 9600 main.hex
+
+# TIP: to ensure success when using the stcgal command,
+# do not connect power to the clock until after the stcgal command is issued.
+```
+
+
+### Debug
 If you want to make any significant code changes, you'll probably wish you had some debugging capability. If you have the STC15W408AS part in your clock, you're in luck as this processor has a second timer and UART. The code already has initialization in place for this UART  if turned on in the global.h header file. SDCC supports a small footprint printf (printf_tiny) that only requires about 400 additional bytes of flash. The timer 2 default configuration is for 115200 baud, 8/1/N. On the Banggood board, the RX and TX have separate pins on a two pin connector, P3. Connection to a serial device is:
 
  ----------------------------
