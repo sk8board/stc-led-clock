@@ -20,7 +20,7 @@
 // Begin Hardware Option configuration
 //---------------------------------------------------------------------------
 
-#define BOARD_TALKING      FALSE
+#define BOARD_TALKING      TRUE
 #define BOARD_BLUE_6       TRUE
 #define BOARD_BLUE_5_RELAY FALSE
 #define BOARD_YELLOW_5     FALSE
@@ -31,8 +31,8 @@
 #define COMMON_ANODE   TRUE
 #define COMMON_CATHODE FALSE
 
-#define PROC_IS_15W408AS FALSE
-#define PROC_IS_15W404AS TRUE
+#define PROC_IS_15W408AS TRUE
+#define PROC_IS_15W404AS FALSE
 #define PROC_IS_15F204EA FALSE
 
 #define HAS_LDR TRUE
@@ -70,14 +70,14 @@
 // Set the default units for the clock
 // Use only one each of these groups of two
 
-#define SET_12HR_FORMAT FALSE
-#define SET_24HR_FORMAT TRUE
+#define SET_12HR_FORMAT TRUE
+#define SET_24HR_FORMAT FALSE
 
-#define SET_MMDD_FORMAT FALSE
-#define SET_DDMM_FORMAT TRUE
+#define SET_MMDD_FORMAT TRUE
+#define SET_DDMM_FORMAT FALSE
 
-#define SET_DEGF_FORMAT FALSE
-#define SET_DEGC_FORMAT TRUE
+#define SET_DEGF_FORMAT TRUE
+#define SET_DEGC_FORMAT FALSE
 
 //---------------------------------------------------------------------------
 // End Software Option configuration
