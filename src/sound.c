@@ -101,7 +101,7 @@ void sendOneBit()
 
 void waitS1Clk()
 {
-    soundTimer = 5;             // 250us pulses
+    soundTimer = 10;             // 250us pulses, changed from 5 to 10 to prevent speaking glitch
     while( soundTimer ) ;
 }
 
